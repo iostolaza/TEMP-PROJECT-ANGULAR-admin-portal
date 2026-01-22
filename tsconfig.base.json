@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@temp-project-angular-admin-portal/ui": ["ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

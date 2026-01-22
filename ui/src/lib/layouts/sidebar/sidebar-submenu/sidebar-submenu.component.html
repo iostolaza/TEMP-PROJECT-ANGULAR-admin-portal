@@ -1,0 +1,46 @@
+<div class="max-h-0 overflow-hidden pt-1 transition-all duration-500 ltr:pl-4 rtl:pr-4" [ngClass]="{ hidden: !menuService.showSideBar, 'max-h-screen': submenu.expanded }">
+  <ul class="border-border text-foreground flex flex-col border-dashed ltr:border-l ltr:pl-2 rtl:border-r rtl:pr-2">
+    @for (sub of submenu.children; track sub.label) {
+      <li>
+        <button
+          type="button"
+          (click)="toggleMenu(sub)"
+          class="relative flex w-full nav-hover items-center gap-2 rounded-lg px-4 py-2 text-left text-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+        >
+          <ng-container [ngTemplateOutlet]="sub.children ? childMenu : parentMenu" [ngTemplateOutletContext]="{ sub: sub }"></ng-container>
+          <ng-template #parentMenu let-sub="sub">
+            @if (sub.route !== '/logout') {
+              <a [routerLink]="sub.route" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }" class="inline-block w-full text-foreground">
+                {{ sub.label }}
+              </a>
+            } @else {
+              <span class="inline-block w-full text-foreground">
+                {{ sub.label }}
+              </span>
+            }
+            @if (menuService.isActive(sub.route)) {
+              <span class="size-1.5 bg-primary absolute flex translate-y-3.5 items-center rounded-full ltr:-translate-x-[11.5px] rtl:translate-x-[11.5px]"></span>
+            }
+          </ng-template>
+          <ng-template #childMenu let-sub="sub">
+            <span class="inline-block w-full cursor-pointer text-foreground">
+              {{ sub.label }}
+            </span>
+            @if (sub.children?.length) {
+              <span class="flex cursor-pointer items-center justify-end px-2 transition-all duration-500">
+                @if (!sub.expanded) {
+                  <svg-icon [src]="getIconPath('plus')" svgClass="h-4 w-4 text-success"></svg-icon>
+                } @else {
+                  <svg-icon [src]="getIconPath('minus')" svgClass="h-4 w-4 text-destructive"></svg-icon>
+                }
+              </span>
+            }
+          </ng-template>
+        </button>
+        @if (sub.children?.length) {
+          <lib-sidebar-submenu [submenu]="sub"></lib-sidebar-submenu>
+        }
+      </li>
+    }
+  </ul>
+</div>

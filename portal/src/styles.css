@@ -1,0 +1,120 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Custom vars in root */
+:root {
+  --background: #f7f7fb;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --border: #e6e9ef;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --success: #16a34a;
+  --destructive: #dc2626;
+}
+
+.dark {
+  --background: #212121;
+  --foreground: #e6eef8;
+  --card: #0e0e0e;
+  --card-foreground: #e6eef8;
+  --border: #273244;
+  --muted: #111827;
+  --muted-foreground: #9aa7bb;
+  --primary: #93c5fd;
+  --primary-foreground: #06121a;
+  --success: #34d399;
+  --destructive: #fb7185;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+}
+
+/* Define Tailwind classes for custom vars */
+@layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+  .text-foreground {
+    color: var(--foreground);
+  }
+  .bg-card {
+    background-color: var(--card);
+  }
+  .text-card-foreground {
+    color: var(--card-foreground);
+  }
+  .border-border {
+    border-color: var(--border);
+  }
+  .text-muted-foreground {
+    color: var(--muted-foreground);
+  }
+  .bg-primary {
+    background-color: var(--primary);
+  }
+  .text-primary-foreground {
+    color: var(--primary-foreground);
+  }
+  .text-success {
+    color: var(--success);
+  }
+  .text-destructive {
+    color: var(--destructive);
+  }
+}
+
+/* === ICONS: WHITE FILLED, NO BULKY LOOK, PRIMARY HIGHLIGHT === */
+.nav-icon,
+svg-icon,
+[svgClass*="text-foreground"],
+svg-icon svg {
+  color: #ffffff !important;        /* pure white fill & stroke */
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+  transition: color 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
+}
+
+.dark .nav-icon,
+.dark svg-icon,
+.dark [svgClass*="text-foreground"],
+.dark svg-icon svg {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+/* Hover: subtle primary tint (or keep white if preferred) */
+.group-hover .nav-icon,
+.group-hover svg-icon,
+.group:hover .nav-icon,
+.group:hover svg-icon {
+  color: var(--primary) !important;
+  fill: var(--primary) !important;
+  stroke: var(--primary) !important;
+}
+
+/* Active item highlight: primary */
+.text-primary .nav-icon,
+.text-primary svg-icon,
+.text-primary [svgClass*="text-foreground"] {
+  color: var(--primary) !important;
+  fill: var(--primary) !important;
+  stroke: var(--primary) !important;
+}
+
+/* Sidebar toggle arrow (white) */
+.sidebar-toggle-icon,
+button[(click)="toggleSidebar()"] svg-icon {
+  color: #ffffff !important;
+  fill: #ffffff !important;
+  stroke: #ffffff !important;
+}
