@@ -38,83 +38,57 @@ body {
   margin: 0;
 }
 
-/* Define Tailwind classes for custom vars */
+/* Tailwind custom vars */
 @layer utilities {
-  .bg-background {
-    background-color: var(--background);
-  }
-  .text-foreground {
-    color: var(--foreground);
-  }
-  .bg-card {
-    background-color: var(--card);
-  }
-  .text-card-foreground {
-    color: var(--card-foreground);
-  }
-  .border-border {
-    border-color: var(--border);
-  }
-  .text-muted-foreground {
-    color: var(--muted-foreground);
-  }
-  .bg-primary {
-    background-color: var(--primary);
-  }
-  .text-primary-foreground {
-    color: var(--primary-foreground);
-  }
-  .text-success {
-    color: var(--success);
-  }
-  .text-destructive {
-    color: var(--destructive);
-  }
+  .bg-background { background-color: var(--background); }
+  .text-foreground { color: var(--foreground); }
+  .bg-card { background-color: var(--card); }
+  .text-card-foreground { color: var(--card-foreground); }
+  .border-border { border-color: var(--border); }
+  .text-muted-foreground { color: var(--muted-foreground); }
+  .bg-primary { background-color: var(--primary); }
+  .text-primary-foreground { color: var(--primary-foreground); }
+  .text-success { color: var(--success); }
+  .text-destructive { color: var(--destructive); }
 }
 
-/* === ICONS: WHITE FILLED, NO BULKY LOOK, PRIMARY HIGHLIGHT === */
+/* HEROICONS OUTLINE – VISIBLE STROKE ONLY */
 .nav-icon,
 svg-icon,
 [svgClass*="text-foreground"],
-svg-icon svg {
-  color: #ffffff !important;        /* pure white fill & stroke */
-  fill: #ffffff !important;
-  stroke: #ffffff !important;
-  transition: color 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
+svg-icon svg,
+svg-icon svg path {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 2.5 !important;   /* thicker, always visible outline */
+  transition: stroke 0.2s ease;
 }
 
 .dark .nav-icon,
 .dark svg-icon,
 .dark [svgClass*="text-foreground"],
-.dark svg-icon svg {
-  color: #ffffff !important;
-  fill: #ffffff !important;
-  stroke: #ffffff !important;
+.dark svg-icon svg,
+.dark svg-icon svg path {
+  stroke: currentColor !important;
 }
 
-/* Hover: subtle primary tint (or keep white if preferred) */
+/* Hover & active */
 .group-hover .nav-icon,
-.group-hover svg-icon,
 .group:hover .nav-icon,
+.group-hover svg-icon,
 .group:hover svg-icon {
-  color: var(--primary) !important;
-  fill: var(--primary) !important;
   stroke: var(--primary) !important;
 }
 
-/* Active item highlight: primary */
 .text-primary .nav-icon,
 .text-primary svg-icon,
 .text-primary [svgClass*="text-foreground"] {
-  color: var(--primary) !important;
-  fill: var(--primary) !important;
   stroke: var(--primary) !important;
 }
 
-/* Sidebar toggle arrow (white) */
+/* Sidebar toggle arrow – white */
+button[(click)="toggleSidebar()"] svg-icon,
 .sidebar-toggle-icon,
-button[(click)="toggleSidebar()"] svg-icon {
-  color: #ffffff !important;
-  fill: #ffffff !important;
+button[(click)="toggleSidebar()"] svg-icon svg path {
   stroke: #ffffff !important;
 }

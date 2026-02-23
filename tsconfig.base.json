@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -13,9 +13,10 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
-      "@temp-project-angular-admin-portal/ui": ["ui/src/index.ts"]
+      "@temp-project-angular-admin-portal/ui": ["./ui/src/index.ts"],
+      "@temp-project-angular-admin-portal/ui/*": ["./ui/src/lib/*"],
+      "@temp-project-angular-admin-portal/core/*": ["./ui/src/lib/core/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
