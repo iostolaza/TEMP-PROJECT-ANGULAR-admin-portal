@@ -1,17 +1,17 @@
+ui/src/lib/layouts/sidebar/sidebar.component.html
 <nav
   [ngClass]="menuService.showSideBar ? 'w-[200px] xl:w-[250px]' : 'w-[70px]'"
   class="bg-card hidden h-full flex-col justify-between pt-3 transition-all duration-300 lg:flex"
 >
   <div class="overflow-hidden">
-    <div
+    <!-- Header row -->
+    <div something is wrong
       [ngClass]="menuService.showSideBar ? 'justify-between' : 'justify-center'"
       class="mx-4 mb-2 flex h-9 items-center"
     >
       @if (menuService.showSideBar) {
         <div class="flex items-center">
-          <b class="text-heading ps-2 ml-1 grow text-sm">
-            Navigation
-          </b>
+          <b class="text-heading ps-2 ml-1 grow text-sm">Navigation</b>
         </div>
       }
       <button
@@ -22,6 +22,7 @@
         <svg-icon src="assets/icons/heroicons/outline/arrow-left.svg" svgClass="h-5 w-5"></svg-icon>
       </button>
     </div>
+
     <div class="h-full overflow-auto px-4">
       <lib-sidebar-menu></lib-sidebar-menu>
     </div>
