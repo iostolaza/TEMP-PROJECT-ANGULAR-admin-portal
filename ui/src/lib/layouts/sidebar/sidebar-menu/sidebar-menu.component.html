@@ -50,13 +50,21 @@
                 }
               </span>
             }
-            @if (!menuService.showSideBar) {
-              <div class="fixed h-[36px]">
-                <span class="bg-foreground text-background absolute w-auto min-w-max translate-y-[2px] scale-0 rounded-md p-2 text-xs font-bold shadow-md transition-all duration-200 group-hover:scale-100 ltr:origin-left ltr:translate-x-10 rtl:origin-right rtl:-translate-x-10">
-                  {{ item.label }}
-                </span>
-              </div>
-            }
+           @if (!menuService.showSideBar) {
+  <span
+    role="tooltip"
+    class="pointer-events-none absolute left-full top-1/2 z-50 ml-3
+           -translate-y-1/2 -translate-x-1
+           whitespace-nowrap rounded-lg
+           bg-foreground text-background
+           px-3 py-1.5 text-sm font-medium
+           shadow-xl opacity-0
+           transition-all duration-200
+           group-hover:opacity-100 group-hover:translate-x-0"
+  >
+    {{ item.label }}
+  </span>
+}
           </button>
           <lib-sidebar-submenu [submenu]="item"></lib-sidebar-submenu>
         </li>

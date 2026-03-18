@@ -8,34 +8,37 @@
           class="relative flex w-full nav-hover items-center gap-2 rounded-lg px-4 py-2 text-left text-xs focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
         >
           <ng-container [ngTemplateOutlet]="sub.children ? childMenu : parentMenu" [ngTemplateOutletContext]="{ sub: sub }"></ng-container>
-          <ng-template #parentMenu let-sub="sub">
-            @if (sub.route !== '/logout') {
-              <a [routerLink]="sub.route" routerLinkActive="text-primary" [routerLinkActiveOptions]="{ exact: true }" class="inline-block w-full text-foreground">
-                {{ sub.label }}
-              </a>
-            } @else {
-              <span class="inline-block w-full text-foreground">
-                {{ sub.label }}
-              </span>
-            }
-            @if (menuService.isActive(sub.route)) {
-              <span class="size-1.5 bg-primary absolute flex translate-y-3.5 items-center rounded-full ltr:-translate-x-[11.5px] rtl:translate-x-[11.5px]"></span>
-            }
-          </ng-template>
-          <ng-template #childMenu let-sub="sub">
-            <span class="inline-block w-full cursor-pointer text-foreground">
-              {{ sub.label }}
-            </span>
-            @if (sub.children?.length) {
-              <span class="flex cursor-pointer items-center justify-end px-2 transition-all duration-500">
-                @if (!sub.expanded) {
-                  <svg-icon [src]="getIconPath('plus')" svgClass="h-4 w-4 text-success"></svg-icon>
-                } @else {
-                  <svg-icon [src]="getIconPath('minus')" svgClass="h-4 w-4 text-destructive"></svg-icon>
-                }
-              </span>
-            }
-          </ng-template>
+          <ng-template #parentMenu let-item="item">
+  <span
+    class="flex min-w-0 flex-1 overflow-hidden whitespace-nowrap transition-all duration-300"
+    [ngClass]="menuService.showSideBar ? 'max-w-[9999px] opacity-100' : 'max-w-0 opacity-0 pointer-events-none'"
+  >
+    @if (item.route === '/logout') {
+      <span class="inline-flex h-[36px] w-full items-center justify-start rounded-sm px-2 text-xs font-semibold text-foreground">
+        {{ item.label }}
+      </span>
+    } @else {
+      
+        [routerLink]="item.route"
+        routerLinkActive="text-primary"
+        class="inline-flex h-[36px] w-full items-center justify-start rounded-sm px-2 text-xs font-semibold text-foreground"
+      >
+        {{ item.label }}
+      </a>
+    }
+  </span>
+</ng-template>
+
+<ng-template #childMenu let-item="item">
+  <span
+    class="flex min-w-0 flex-1 overflow-hidden whitespace-nowrap transition-all duration-300"
+    [ngClass]="menuService.showSideBar ? 'max-w-[9999px] opacity-100' : 'max-w-0 opacity-0 pointer-events-none'"
+  >
+    <span class="inline-flex h-9 w-full items-center justify-start rounded-sm px-2 text-xs font-semibold text-foreground">
+      {{ item.label }}
+    </span>
+  </span>
+</ng-template>
         </button>
         @if (sub.children?.length) {
           <lib-sidebar-submenu [submenu]="sub"></lib-sidebar-submenu>

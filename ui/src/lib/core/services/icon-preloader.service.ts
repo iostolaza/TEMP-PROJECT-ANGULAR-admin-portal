@@ -28,8 +28,8 @@ export const ICONS = {
 
 export type IconName = keyof typeof ICONS;
 
-export function getIconPath(name: IconName): string {
-  return ICONS[name] || 'assets/icons/heroicons/outline/placeholder.svg'; // Fallback
+export function getIconPath(name: string): string {
+  return (ICONS as Record<string, string>)[name] ?? 'assets/icons/heroicons/outline/placeholder.svg';
 }
 
 @Injectable({ providedIn: 'root' })
