@@ -87,8 +87,8 @@ svg-icon svg path {
 }
 
 /* Sidebar toggle arrow – white */
-button[(click)="toggleSidebar()"] svg-icon,
 .sidebar-toggle-icon,
-button[(click)="toggleSidebar()"] svg-icon svg path {
+.sidebar-toggle-icon svg-icon,
+.sidebar-toggle-icon svg-icon svg path {
   stroke: #ffffff !important;
 }
