@@ -6,7 +6,7 @@ import { from, Observable, throwError, of, forkJoin } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { RoleService } from './role.service';
 import { AuthService } from './auth.service';
-import { Transaction, Invoice, InvoiceItem } from '../models/financial.model';
+import { Transaction, Invoice, InvoiceItem, Account } from '../models/financial.model';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 
@@ -20,6 +20,14 @@ export class FinancialService {
     private authService: AuthService,
     private userService: UserService
   ) {}
+
+  // TODO: adapt to new financial service
+  // The ported timesheet entry UI expects a charge-code-bearing Account model.
+  // The merged schema has no Account model yet, so this returns an empty list
+  // until the charge-code → account mapping is re-implemented.
+  async listAccounts(): Promise<Account[]> {
+    return [];
+  }
 
   private getLastBalance(accountId: string): Observable<number> {
     return from(this.client.models.Transaction.list({

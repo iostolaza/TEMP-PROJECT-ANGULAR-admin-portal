@@ -1,11 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { fetchAuthSession } from 'aws-amplify/auth';
 import { generateClient } from 'aws-amplify/data';
 import type { Schema } from '@amplify-schema';
+import { UserService, UserProfile } from './user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private client = generateClient<Schema>();
+  private userService = inject(UserService);
+
+  // Synchronous snapshot of the currently loaded user profile (or null).
+  getCurrentUserSync(): UserProfile | null {
+    return this.userService.user();
+  }
 
   async getCustomClaims(): Promise<Record<string, any>> {
     try {

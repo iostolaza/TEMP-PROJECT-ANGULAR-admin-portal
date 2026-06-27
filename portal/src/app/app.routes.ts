@@ -43,6 +43,9 @@ export const appRoutes: Routes = [
 
       { path: 'financials', loadComponent: () => import('./features/financials/financials.component').then(m => m.FinancialsComponent) },
 
+      { path: 'timesheet', redirectTo: 'timesheet/calendar', pathMatch: 'full' },
+      { path: 'timesheet/calendar', loadComponent: () => import('./features/timesheet/calendar-view/calendar.component').then(m => m.CalendarComponent) },
+      { path: 'timesheet/list', loadComponent: () => import('./features/timesheet/review-list/review-list.component').then(m => m.ReviewListComponent) },
       { path: 'timesheet/submitted', loadComponent: () => import('./features/timesheet/timesheet.component').then(m => m.Timesheet) },
 
       { path: 'schedule/calendar', loadComponent: () => import('./features/calendar/calendar.component').then(m => m.Calendar) },
