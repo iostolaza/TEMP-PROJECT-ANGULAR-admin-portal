@@ -37,3 +37,9 @@ yarn-error.log*
 *.tmp.*
 *.tmp.*
 *.tmp.*
+
+# Amplify
+.amplify/
+amplify_outputs.json
+admin/src/amplify_outputs.json
+portal/src/amplify_outputs.json
