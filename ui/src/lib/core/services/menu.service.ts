@@ -47,6 +47,10 @@ export class MenuService implements OnDestroy {
   }
   set showMobileMenu(value: boolean) { this._showMobileMenu.set(value); }
 
+  public setMenu(menu: MenuItem[]) {
+    this._pagesMenu.set(menu);
+  }
+
   public toggleSidebar() {
     this._showSidebar.set(!this._showSidebar());
   }
